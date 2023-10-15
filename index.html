@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            margin: 30px; 
+            background-color: black; 
+            color: white; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        label { display: block; margin-top: 20px; }
+        button { margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <div> 
+        <label>Enter a number:
+            <input id="input" type="text">
+        </label>
+        <label>Select the current base:
+            <select id="currentBase">
+                <option value="2">Binary</option>
+                <option value="8">Octal</option>
+                <option value="10" selected>Decimal</option>
+                <option value="16">Hexadecimal</option>
+            </select>
+        </label>
+        <label>Select the base to convert to:
+            <select id="newBase">
+                <option value="2">Binary</option>
+                <option value="8">Octal</option>
+                <option value="10">Decimal</option>
+                <option value="16">Hexadecimal</option>
+            </select>
+        </label>
+        <button onclick="convert()">Convert</button>
+
+        <h2 id="output"></h2>
+
+        <script>
+            function convert() {
+                const input = document.querySelector('#input').value;
+                const currentBase = document.querySelector('#currentBase').value;
+                const newBase = document.querySelector('#newBase').value;
+                const output = document.querySelector('#output');
+
+                const decimal = parseInt(input, currentBase);
+                if (isNaN(decimal)) {
+                    output.textContent = 'Invalid input!';
+                    return;
+                }
+                output.textContent = decimal.toString(newBase).toUpperCase();
+            }
+        </script>
+    </div>
+</body>
+</html>
